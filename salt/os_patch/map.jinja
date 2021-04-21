@@ -1,0 +1,12 @@
+# -*- coding: utf-8 -*-
+# vim: ft=jinja
+
+{# This is a barebones map.jinja file #}
+{# We import default values that are then merged with pillar data #}
+
+{# Imports defaults #}
+{% import_yaml (tplidr + "/defaults.yaml") as defaults %}
+
+{# Merge in winjdk:lookup pillar #}
+{% set patch_settings = salt['pillar.get']('os_patch:lookup', default=defaults.os_patch, merge=True) %}
+

@@ -1,0 +1,16 @@
+# _*_ coding: utf-8 _*_
+# vim: ft=yaml
+
+os_patch:
+  linux:
+    kernel_patch: true
+    system_reboot: false
+  windows:
+    software: false
+    drivers: false
+    categories:
+      - Updates
+      - Security Updates
+      - Critical Updates
+    system_reboot: false
+    

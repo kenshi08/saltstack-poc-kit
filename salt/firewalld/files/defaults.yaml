@@ -1,0 +1,25 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+
+firewalld:
+  package:
+    name: firewalld
+    version: '0.6.3'
+  service: 
+    name: firewalld
+    enable: true
+  config: 
+    filename: /etc/firewalld/firewalld.conf
+    source: salt://firewalld/files/firewalld.conf
+  default_zone: public
+
+  predefined_services:
+    - ssh
+    - dhcpv6-client
+  custom_services:
+      ports:
+      - 4505/tcp
+      - 4506/tcp
+      - 8080/tcp
+      - 8443/tcp
+

@@ -1,0 +1,41 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+tomcat:
+  pkg: tomcat
+  manager_pkg: tomcat-admin
+  common_pkg: tomcat-common
+  ver: 7
+  with_haveged: false
+  haveged_enabled: false
+  conf_dir: /etc/tomcat
+  main_config: /etc/sysconfig/tomcat
+  service: tomcat
+  service_enabled: true
+  service_running: true  # reserved for Travis CI and maybe MacOS
+  user: tomcat
+  group: tomcat
+  java_home: /usr/lib/jvm/jre
+  java_opts:
+    - 'Djava.awt.headless=true'
+    - 'Xmx128m'
+    - 'XX:MaxPermSize=256m'
+    - 'XX:+UseConcMarkSweepGC'
+  limit:
+    soft: 64000
+    hard: 64000
+  connectors: {}
+  sites: {}
+  resources: {}
+
+  # Relocated from pillar.example
+  id: ['example.com', 'example.net']
+  jvm_tmp: /tmp/tomcat
+  cluster:
+    simple: true
+
+  catalina_base: /usr/share/tomcat
+  catalina_home: /usr/share/tomcat
+  catalina_pid: /var/run/tomcat.pid
+  # Used by generic 'tomcat-default-CentOS.template'
+  catalina_tmpdir: /var/cache/tomcat/temp

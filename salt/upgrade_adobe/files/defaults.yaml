@@ -1,0 +1,20 @@
+# _*_ coding: utf-8 _*_
+# vim: ft=yaml
+
+adobe:
+  config:
+    filename: AcroRdrDC2001320074_en_US.exe
+    processess:
+      - AcroRD32
+    shortcut_path: "C\\Users\\Public\\Desktop\\Acrobat Reader DC.lnk"
+  source:
+    # salt protocal will be appended in the state with tpldir jinja predefined variable
+    local: AcroRdrDC2001320074_en_US.exe
+    # remote location of adobeReader update exe, https, ftp only
+    remote: 
+  download:
+    location: C:\Salt-Downloads
+  commands:
+    detect: (Get-ChildItem -Path 'registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths').GetValue('') -match "AcroRD32.exe"
+    version: (Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion | findstr /i "Acrobat Reader") -replace '[a-zA-Z$]' -replace(' ', '') 
+    short_remove: (Remve-Item -Path "C:\Users\Public\Desktop\Acrobat Reader DC.lnk" -Force 2>&1 > $null)

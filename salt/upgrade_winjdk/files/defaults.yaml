@@ -1,0 +1,9 @@
+# _*_ coding: utf-8 _*_
+# vim: ft=yaml
+
+winjdk:
+  package: 
+    name: jdk8
+    version: latest
+
+
