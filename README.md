@@ -1,4 +1,4 @@
-# Saltstack for Josh
+# Saltstack POC Kit - Use Cases
 
 - [x] Install software
 - [x] Deploy minion and accept into SSE
